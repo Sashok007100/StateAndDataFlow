@@ -8,6 +8,30 @@
 import Foundation
 
 final class LoginViewViewModel: ObservableObject {
-    @Published var name = ""
-    @Published var isLoggedIn = false
+    @Published var user = User()
+    
+    private var storageManager = StorageManager.shared
+    
+    init(user: User = User()) {
+        self.user = user
+    }
+    
+    func fetch() -> User {
+        storageManager.fetch()
+    }
+    
+    func logOut() {
+        user.name = ""
+        user.isLoggedIn = false
+        storageManager.delete()
+    }
+    
+    func login() {
+        user.isLoggedIn = true
+        storageManager.create(name: user.name)
+    }
+    
+    func isValid() -> Bool {
+        user.name.count >= 3
+    }
 }

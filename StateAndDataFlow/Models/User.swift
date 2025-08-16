@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
-    let name: String
-    let isLoggedIn: Bool
+struct User: Codable {
+    var name = ""
+    var isLoggedIn = false
 }
