@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Hi, \(loginViewVM.name)!")
+            Text("Hi, \(loginViewVM.fetch().name)!")
                 .padding(.top, 100)
                 .font(.largeTitle)
             
@@ -34,15 +34,10 @@ struct ContentView: View {
             ButtonView(
                 colorButton: .blue,
                 title: "LogOut",
-                action: logOut
+                action: loginViewVM.logOut
             )
         }
         .padding()
-    }
-    
-    private func logOut() {
-        loginViewVM.isLoggedIn = false
-        loginViewVM.name = ""
     }
 }
 
