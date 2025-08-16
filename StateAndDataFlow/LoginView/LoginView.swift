@@ -12,18 +12,21 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            TextField("Enter your name", text: $loginViewVM.name)
-                .multilineTextAlignment(.center)
+            HStack {
+                TextField("Enter your name", text: $loginViewVM.user.name)
+                    .multilineTextAlignment(.center)
+                
+                Text(loginViewVM.user.name.count.formatted())
+                    .foregroundStyle(
+                        loginViewVM.isValid() ? .green : .red
+                    )
+            }
+            .padding()
             
-            Button(action: login) {
+            Button(action: loginViewVM.login) {
                 Label("OK", systemImage: "checkmark.circle")
             }
-        }
-    }
-    
-    private func login() {
-        if !loginViewVM.name.isEmpty {
-            loginViewVM.isLoggedIn.toggle()
+            .disabled(!loginViewVM.isValid())
         }
     }
 }
