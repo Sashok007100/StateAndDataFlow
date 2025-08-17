@@ -22,13 +22,13 @@ final class LoginViewViewModel: ObservableObject {
     
     func logOut() {
         user.name = ""
-        user.isLoggedIn = false
+        user.isLoggedIn.toggle()
         storageManager.delete()
     }
     
     func login() {
-        user.isLoggedIn = true
-        storageManager.create(name: user.name)
+        user.isLoggedIn.toggle()
+        storageManager.create(user: user)
     }
     
     func isValid() -> Bool {
