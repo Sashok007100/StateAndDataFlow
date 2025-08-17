@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(ContentViewViewModel.self) private var contentViewVM
     @EnvironmentObject private var loginViewVM: LoginViewViewModel
+    
+    private var contentViewVM = ContentViewViewModel()
     
     var body: some View {
         VStack {
